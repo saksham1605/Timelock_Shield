@@ -2264,7 +2264,7 @@ library BigNumbers {
 
  */
 
-  00function _modexp(
+function _modexp(
 
  bytes memory _b, 
 
@@ -2591,24 +2591,24 @@ contract WesolowskiVerification {
 
  function caller(string memory a,string memory l,string memory pi,string memory t,string memory N,string memory ySaved) public returns (bool){
 
-    BigNumber memory one = BigNumbers.init(bytes(a),false,512);
+    BigNumber memory _a = BigNumbers.init(bytes(a),false,512);
 
-    BigNumber memory two= BigNumbers.init(bytes(l),false,512);
+    BigNumber memory _l= BigNumbers.init(bytes(l),false,512);
 
-    BigNumber memory three= BigNumbers.init(bytes(pi),false,512);
+    BigNumber memory _pi= BigNumbers.init(bytes(pi),false,512);
 
-    BigNumber memory four= BigNumbers.init(bytes(t),false,512);
+    BigNumber memory _t= BigNumbers.init(bytes(t),false,512);
 
-    BigNumber memory five= BigNumbers.init(bytes(N),false,512);
+    BigNumber memory _N= BigNumbers.init(bytes(N),false,512);
 
-    BigNumber memory six= BigNumbers.init(bytes(ySaved),false,512);
+    BigNumber memory _ySaved= BigNumbers.init(bytes(ySaved),false,512);
 
-    BigNumber memory x=BigNumbers.modexp(BigNumbers.two(),four,three);
+    BigNumber memory r=BigNumbers.modexp(BigNumbers.two(),_t,_l);
 
-    y = BigNumbers.modexp(three,two,five);
-    y_tmp = BigNumbers.modexp(one,x,five);
-    y= BigNumbers.modmul(y,y_tmp,five);
-    if (BigNumbers.eq(y,six)) {
+    y = BigNumbers.modexp(_pi,_l,_N);
+    y_tmp = BigNumbers.modexp(_a,r,_N);
+    y= BigNumbers.modmul(y,y_tmp,_N);
+    if (BigNumbers.eq(y,_ySaved)) {
         return true;
 
         } else {
